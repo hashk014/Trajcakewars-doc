@@ -1,51 +1,51 @@
-# TrajCakeWars — Guide de Setup Rapide
+# TrajCakeWars — Quick Setup Guide
 ## by TrajStudio
 
 ---
 
-## Étape 1 : Installation
+## Step 1: Installation
 
-1. Place `TrajCakeWars.jar` dans le dossier `plugins/` de ton serveur.
-2. Démarre le serveur une première fois pour générer les fichiers de config.
-3. Arrête le serveur.
+1. Place `TrajCakeWars.jar` in your server's `plugins/` folder.
+2. Start the server once to generate config files.
+3. Stop the server.
 
 ---
 
-## Étape 2 : Préparer ta map CakeWars
+## Step 2: Prepare Your CakeWars Map
 
-Tu as besoin d'une map CakeWars construite avec :
-- 2 îles (une par joueur) avec un bloc cake sur chacune
-- Des ponts ou un espace entre les îles
-- Un centre (optionnel, pour les générateurs diamant)
-- Des emplacements pour les PNJ shops sur chaque île
+You need a CakeWars map built with:
+- 2 islands (one per player) with a cake block on each
+- Bridges or gaps between the islands
+- A center area (optional, for diamond generators)
+- Spots for shop NPCs on each island
 
-### Option A : Ta map est dans un monde séparé
+### Option A: Your map is in a separate world
 ```
-cp -r ton_monde_cakewars cw_templates/desert
+cp -r your_cakewars_world cw_templates/desert
 ```
 
-### Option B : Ta map est dans le monde principal (world)
+### Option B: Your map is in the main world
 ```
 cp -r world cw_templates/desert
 ```
 
-### Option C : En jeu
-Rends-toi dans le monde contenant ta map et tape :
+### Option C: In-game
+Stand in the world containing your map and run:
 ```
 /cw savetemplate desert
 ```
 
-Le dossier `cw_templates/` doit être à la racine du serveur,
-au même niveau que `world/`, `plugins/`, etc.
+The `cw_templates/` folder must be at the server root,
+same level as `world/`, `plugins/`, etc.
 
 ---
 
-## Étape 3 : Placer les PNJ Shops
+## Step 3: Place Shop NPCs
 
-Dans ta map CakeWars (avant de sauvegarder le template), place des
-PNJ sur chaque île avec un plugin de ton choix :
+In your CakeWars map (before saving the template), place
+NPCs on each island using any NPC plugin:
 
-### Avec Citizens :
+### With Citizens:
 ```
 /npc create §e§lItems Shop
 /npc type VILLAGER
@@ -55,75 +55,75 @@ PNJ sur chaque île avec un plugin de ton choix :
 /npc type VILLAGER
 ```
 
-### Avec un villageois vanilla :
-Renomme-le avec un name tag contenant "Items" ou "Blocs".
+### With a vanilla villager:
+Rename it with a name tag containing "Items" or "Blocks".
 
-### Mots-clés reconnus :
-- Items Shop → nom contient : Items, Item, Combat, Armes
-- Blocks Shop → nom contient : Blocks, Blocs, Build, Construction
-- (Configurable dans config.yml)
+### Recognized keywords:
+- Items Shop → name contains: Items, Item, Combat, Weapons
+- Blocks Shop → name contains: Blocks, Build, Construction
+- (Configurable in config.yml)
 
-Fais 2 PNJ par île (Items + Blocs) = 4 PNJ total.
-Si tu as sauvegardé le template APRÈS avoir placé les PNJ,
-ils seront clonés automatiquement à chaque partie.
+Place 2 NPCs per island (Items + Blocks) = 4 NPCs total.
+If you saved the template AFTER placing the NPCs,
+they will be cloned automatically for every game.
 
 ---
 
-## Étape 4 : Configurer l'arène
+## Step 4: Configure the Arena
 
-Démarre le serveur et connecte-toi en jeu.
+Start the server and connect in-game.
 
-### Créer l'arène :
+### Create the arena:
 ```
 /cw create desert
 ```
 
-### Te téléporter dans le template pour configurer :
+### Teleport into the template to configure:
 ```
 /cw tp desert
 ```
 
-### Définir les 7 points obligatoires :
-Va à chaque emplacement et tape la commande correspondante.
+### Set the 7 required points:
+Go to each location and run the corresponding command.
 
 ```
-/cw set desert spawn1       → Spawn du joueur 1
-/cw set desert spawn2       → Spawn du joueur 2
-/cw set desert cake1        → Sur le bloc cake du joueur 1
-/cw set desert cake2        → Sur le bloc cake du joueur 2
-/cw set desert gen1         → Générateur de fer, île 1
-/cw set desert gen2         → Générateur de fer, île 2
-/cw set desert lobby        → Point d'attente/spectateur
+/cw set desert spawn1       → Player 1 spawn
+/cw set desert spawn2       → Player 2 spawn
+/cw set desert cake1        → Player 1 cake block
+/cw set desert cake2        → Player 2 cake block
+/cw set desert gen1         → Iron generator, island 1
+/cw set desert gen2         → Iron generator, island 2
+/cw set desert lobby        → Spectator/waiting point
 ```
 
-### Ajouter des générateurs diamant (optionnel) :
+### Add diamond generators (optional):
 ```
-/cw set desert diamond      → Répéter à chaque emplacement
+/cw set desert diamond      → Repeat at each location
 ```
 
-### Personnaliser :
+### Customize:
 ```
-/cw setname desert §6§lDésert Brûlant
+/cw setname desert §6§lBurning Desert
 /cw seticon desert SAND
 /cw settemplate desert desert
 ```
 
-### Vérifier que tout est configuré :
+### Verify everything is configured:
 ```
-/cw info desert             → Tout doit être vert ✓
+/cw info desert             → Everything should be green ✓
 ```
 
-### Revenir au lobby :
+### Return to lobby:
 ```
 /cw back
 ```
 
 ---
 
-## Étape 5 : Définir le point de retour lobby
+## Step 5: Set the Lobby Return Point
 
-Place-toi exactement là où les joueurs doivent être téléportés
-après chaque partie (dans ton lobby principal) et tape :
+Stand exactly where players should be teleported
+after each game (in your main lobby) and run:
 
 ```
 /cw setlobby
@@ -131,7 +131,7 @@ après chaque partie (dans ton lobby principal) et tape :
 
 ---
 
-## Étape 6 : Activer et sauvegarder
+## Step 6: Enable and Save
 
 ```
 /cw enable desert
@@ -140,100 +140,100 @@ après chaque partie (dans ton lobby principal) et tape :
 
 ---
 
-## Étape 7 : PNJ lobby (optionnel)
+## Step 7: Lobby NPC (optional)
 
-Pour que les joueurs accèdent au CakeWars depuis le lobby
-en cliquant sur un PNJ :
+To let players access CakeWars from the lobby
+by clicking an NPC:
 
-### Avec Citizens :
+### With Citizens:
 ```
 /npc create §d§lCakeWars 1v1
 /npc type VILLAGER
 /npc command add -p cw
 ```
 
-Les joueurs cliquent → le menu /cw s'ouvre.
+Players click → the /cw menu opens.
 
 ---
 
-## Étape 8 : Tester
+## Step 8: Test
 
-Connecte-toi avec 2 comptes (ou un ami).
+Connect with 2 accounts (or a friend).
 
-1. Les 2 joueurs cliquent sur le PNJ lobby ou tapent `/cw`
-2. Cliquer sur "Jouer" dans le menu
-3. Le matchmaking trouve les 2 joueurs
-4. Un monde temporaire est cloné
-5. Les joueurs sont TP, freeze 5s, puis GO !
-6. La partie se joue
-7. Le vainqueur reçoit ses récompenses
-8. Les 2 joueurs sont TP au lobby
-9. Le monde temporaire est supprimé
-
----
-
-## Ajouter une deuxième map
-
-1. Construis une nouvelle map dans un monde dédié
-2. Place les PNJ shops dedans
-3. Sauvegarde : `/cw savetemplate jungle`
-4. Crée l'arène : `/cw create jungle`
-5. Configure : `/cw tp jungle` puis `/cw set jungle spawn1` etc.
-6. Active : `/cw back` → `/cw enable jungle` → `/cw save`
-
-Les 2 maps seront disponibles dans le matchmaking.
+1. Both players click the lobby NPC or type `/cw`
+2. Click "Play" in the menu
+3. Matchmaking finds both players
+4. A temporary world is cloned
+5. Players are teleported, frozen 5s, then GO!
+6. Game plays out
+7. Winner receives rewards
+8. Both players teleported to lobby
+9. Temporary world deleted
 
 ---
 
-## Commandes essentielles (aide-mémoire)
+## Adding a Second Map
 
-### Joueur :
-  /cw                → Menu principal
-  /cw join           → Matchmaking rapide
-  /cw join <code>    → Rejoindre session privée
-  /cw private <map>  → Créer session privée
-  /cw leave          → Quitter
+1. Build a new map in a dedicated world
+2. Place shop NPCs inside it
+3. Save: `/cw savetemplate jungle`
+4. Create arena: `/cw create jungle`
+5. Configure: `/cw tp jungle` then `/cw set jungle spawn1` etc.
+6. Enable: `/cw back` → `/cw enable jungle` → `/cw save`
 
-### Admin :
-  /cw create <id>              → Nouvelle arène
-  /cw delete <id>              → Supprimer (x2 pour confirmer)
-  /cw tp <arène>               → TP dans le template
-  /cw back                     → Retour lobby
-  /cw set <arène> <point>      → Définir un point
-  /cw setname <arène> <nom>    → Nom d'affichage
-  /cw seticon <arène> <mat>    → Icône GUI
-  /cw settemplate <arène> <t>  → Lier au template
-  /cw savetemplate <nom>       → Sauvegarder monde comme template
-  /cw setlobby                 → Point de retour lobby
-  /cw enable <arène>           → Activer
-  /cw save                     → Sauvegarder
-  /cw info <arène>             → Voir les points configurés
-  /cw list                     → Lister les arènes
-  /cw admin                    → Panel admin GUI
+Both maps will be available in matchmaking.
 
 ---
 
-## Dépannage
+## Command Cheat Sheet
 
-### Le shop est vide
-Supprime `plugins/TrajCakeWars/config.yml` et redémarre.
-L'ancien config n'a pas les sections shop.
+### Player:
+  /cw                → Main menu
+  /cw join           → Quick matchmaking
+  /cw join <code>    → Join private session
+  /cw private <map>  → Create private session
+  /cw leave          → Leave queue/game
 
-### Les arènes sont DISABLED / ready=false
-Il manque des points. Tape `/cw info <arène>` pour voir
-lesquels sont manquants (✗).
-
-### Les joueurs tombent dans le vide après la game
-Tape `/cw setlobby` à la bonne position dans le lobby.
-
-### Le monde temporaire ne se crée pas
-Vérifie que `cw_templates/<nom>` existe bien à la racine
-du serveur et que le template est lié : `/cw settemplate <arène> <nom>`
-
-### Le matchmaking ne trouve pas d'arène
-L'arène doit être `ready=true` ET `state=WAITING`.
-Tape `/cw enable <arène>` puis `/cw save`.
+### Admin:
+  /cw create <id>              → New arena
+  /cw delete <id>              → Delete (type twice to confirm)
+  /cw tp <arena>               → Teleport into template
+  /cw back                     → Return to lobby
+  /cw set <arena> <point>      → Set a configuration point
+  /cw setname <arena> <name>   → Display name
+  /cw seticon <arena> <mat>    → GUI icon material
+  /cw settemplate <arena> <t>  → Link to template
+  /cw savetemplate <name>      → Save current world as template
+  /cw setlobby                 → Set lobby return point
+  /cw enable <arena>           → Enable for matchmaking
+  /cw save                     → Save to disk
+  /cw info <arena>             → View configured points
+  /cw list                     → List all arenas
+  /cw admin                    → Admin GUI panel
 
 ---
 
-TrajCakeWars v2.1.5 — by hash
+## Troubleshooting
+
+### Shop inventory is empty
+Delete `plugins/TrajCakeWars/config.yml` and restart.
+The old config is missing the shop sections.
+
+### Arenas are DISABLED / ready=false
+Missing configuration points. Run `/cw info <arena>`
+to see which ones are missing (✗).
+
+### Players fall into the void after the game
+Run `/cw setlobby` at the correct position in your lobby.
+
+### Temporary world is not created
+Verify `cw_templates/<name>` exists at the server root
+and the template is linked: `/cw settemplate <arena> <name>`
+
+### Matchmaking can't find an arena
+The arena must be `ready=true` AND `state=WAITING`.
+Run `/cw enable <arena>` then `/cw save`.
+
+---
+
+TrajCakeWars v2.1.5 — by TrajStudio
