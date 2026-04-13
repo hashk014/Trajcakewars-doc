@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrajCakeWars v2.1 — Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0f;
+  --bg-card: #141418;
+  --bg-code: #1a1a22;
+  --border: #2a2a35;
+  --text: #e4e4e8;
+  --text-dim: #8888a0;
+  --text-bright: #ffffff;
+  --accent: #d946ef;
+  --accent-dim: #d946ef33;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --blue: #3b82f6;
+  --red: #ef4444;
+  --orange: #f97316;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent-dim); }
+
+/* --- Layout --- */
+.wrapper { display: flex; min-height: 100vh; }
+nav {
+  position: fixed; top: 0; left: 0;
+  width: 260px; height: 100vh;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  padding: 28px 20px;
+  overflow-y: auto;
+  z-index: 100;
+}
+main {
+  margin-left: 260px;
+  max-width: 820px;
+  padding: 48px 56px 120px;
+}
+
+/* --- Nav --- */
+.nav-brand {
+  font-size: 18px; font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.nav-version {
+  font-size: 11px; font-weight: 500;
+  color: var(--text-dim);
+  background: var(--bg-code);
+  padding: 2px 8px; border-radius: 4px;
+  display: inline-block; margin-bottom: 28px;
+}
+.nav-section {
+  font-size: 10px; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-dim);
+  margin: 24px 0 8px;
+}
+nav a {
+  display: block;
+  font-size: 13.5px; font-weight: 400;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+nav a:hover { color: var(--text-bright); background: var(--accent-dim); }
+
+/* --- Content --- */
+h1 {
+  font-size: 36px; font-weight: 800;
+  color: var(--text-bright);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+h2 {
+  font-size: 24px; font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.4px;
+  margin: 56px 0 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+h2:first-of-type { border-top: none; margin-top: 36px; }
+h3 {
+  font-size: 17px; font-weight: 600;
+  color: var(--text-bright);
+  margin: 32px 0 10px;
+}
+p { margin-bottom: 14px; font-size: 15px; }
+.subtitle {
+  font-size: 17px; color: var(--text-dim);
+  font-weight: 300; margin-bottom: 36px;
+}
+
+/* --- Code --- */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--bg-code);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 14px 0 20px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+pre code { background: none; padding: 0; color: var(--text); }
+.code-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+/* --- Table --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 20px;
+  font-size: 14px;
+}
+th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+
+/* --- Cards --- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 14px 0 20px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px 0 20px;
+}
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.feature-card .icon { font-size: 22px; margin-bottom: 8px; }
+.feature-card h4 { font-size: 14px; font-weight: 600; color: var(--text-bright); margin-bottom: 4px; }
+.feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; }
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 9px; border-radius: 5px;
+  letter-spacing: 0.3px;
+}
+.badge-green { background: #22c55e22; color: var(--green); }
+.badge-yellow { background: #eab30822; color: var(--yellow); }
+.badge-blue { background: #3b82f622; color: var(--blue); }
+.badge-red { background: #ef444422; color: var(--red); }
+
+/* --- Callout --- */
+.callout {
+  border-left: 3px solid;
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0;
+  font-size: 14px;
+}
+.callout-info { border-color: var(--blue); background: #3b82f60a; }
+.callout-warn { border-color: var(--yellow); background: #eab3080a; }
+.callout-tip { border-color: var(--green); background: #22c55e0a; }
+.callout strong { color: var(--text-bright); }
+
+/* --- Steps --- */
+.step {
+  display: flex; gap: 16px;
+  margin: 16px 0;
+}
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  margin-top: 2px;
+}
+.step-content { flex: 1; }
+.step-content h4 { font-size: 15px; font-weight: 600; color: var(--text-bright); margin-bottom: 4px; }
+.step-content p { font-size: 14px; color: var(--text-dim); margin: 0; }
+
+.comment { color: #6a6a82; }
+.string { color: #22c55e; }
+.key { color: #eab308; }
+.cmd { color: var(--accent); }
+
+@media (max-width: 900px) {
+  nav { display: none; }
+  main { margin-left: 0; padding: 32px 24px 80px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">TrajCakeWars</div>
+  <span class="nav-version">v2.1.0</span>
+
+  <div class="nav-section">Getting Started</div>
+  <a href="#overview">Overview</a>
+  <a href="#requirements">Requirements</a>
+  <a href="#installation">Installation</a>
+  <a href="#quick-start">Quick Start</a>
+
+  <div class="nav-section">Arena Setup</div>
+  <a href="#creating-template">Creating a Template</a>
+  <a href="#arena-config">Arena Configuration</a>
+  <a href="#shop-npcs">Shop NPCs</a>
+  <a href="#generators">Generators</a>
+
+  <div class="nav-section">Gameplay</div>
+  <a href="#game-flow">Game Flow</a>
+  <a href="#matchmaking">Matchmaking</a>
+  <a href="#private-sessions">Private Sessions</a>
+  <a href="#cake-mechanic">Cake Mechanic</a>
+  <a href="#shops">Shops</a>
+
+  <div class="nav-section">Configuration</div>
+  <a href="#config-general">General Settings</a>
+  <a href="#config-generators">Generators</a>
+  <a href="#config-rewards">Rewards</a>
+  <a href="#config-shops">Shop Items</a>
+  <a href="#config-detection">NPC Detection</a>
+
+  <div class="nav-section">Commands</div>
+  <a href="#player-commands">Player Commands</a>
+  <a href="#admin-commands">Admin Commands</a>
+
+  <div class="nav-section">Reference</div>
+  <a href="#permissions">Permissions</a>
+  <a href="#placeholders">Placeholders</a>
+  <a href="#compatibility">Compatibility</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- ============ OVERVIEW ============ -->
+<h1>TrajCakeWars</h1>
+<p class="subtitle">A fully-featured, production-ready Cake Wars 1v1 minigame engine for Spigot/Paper servers. Built for performance, customization, and seamless integration.</p>
+
+<div class="card-grid">
+  <div class="feature-card"><div class="icon">🏟️</div><h4>Multi-Arena</h4><p>Run unlimited concurrent games. Each match runs in an isolated temporary world cloned from a template.</p></div>
+  <div class="feature-card"><div class="icon">⚙️</div><h4>Fully Configurable</h4><p>Every shop item, reward, message, and game parameter is configurable from a single config.yml file.</p></div>
+  <div class="feature-card"><div class="icon">🔌</div><h4>Plugin Agnostic</h4><p>Works with any NPC plugin (Citizens, FancyNpcs, ZNPCsPlus), any economy plugin, any permissions plugin.</p></div>
+  <div class="feature-card"><div class="icon">🔒</div><h4>Private Sessions</h4><p>Players can create invite-only matches with a unique 6-character code. Challenge your friends.</p></div>
+</div>
+
+<h2 id="requirements">Requirements</h2>
+<table>
+  <tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
+  <tr><td>Server Software</td><td>Spigot 1.21.x</td><td>Paper 1.21.x</td></tr>
+  <tr><td>Java</td><td>Java 21</td><td>Java 21</td></tr>
+  <tr><td>RAM</td><td>2 GB</td><td>4 GB+ (for multiple concurrent games)</td></tr>
+</table>
+
+<div class="callout callout-info">
+  <strong>No dependencies required.</strong> TrajCakeWars is fully standalone. NPC plugins, economy plugins, and tab management plugins are optional and enhance the experience but are not needed for core functionality.
+</div>
+
+<!-- ============ INSTALLATION ============ -->
+<h2 id="installation">Installation</h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-content"><h4>Drop the JAR</h4><p>Place <code>TrajCakeWars-2.1.0.jar</code> into your server's <code>plugins/</code> directory.</p></div>
+</div>
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-content"><h4>Start the server</h4><p>The plugin generates its default <code>config.yml</code> and <code>arenas.yml</code> on first launch.</p></div>
+</div>
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-content"><h4>Create your template</h4><p>Build your CakeWars map, then copy the world folder to <code>cw_templates/</code>.</p></div>
+</div>
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-content"><h4>Configure your arena</h4><p>Use in-game setup commands to define spawn points, cake locations, and generators.</p></div>
+</div>
+
+<!-- ============ QUICK START ============ -->
+<h2 id="quick-start">Quick Start</h2>
+<p>Get a working CakeWars game in under 5 minutes:</p>
+<pre><code><span class="comment"># On your server machine — stop the server first</span>
+mkdir -p cw_templates
+cp -r my_cakewars_map cw_templates/desert
+
+<span class="comment"># Start the server, then in-game:</span>
+<span class="cmd">/cw create desert</span>
+<span class="cmd">/cw set desert spawn1</span>        <span class="comment"># Stand at player 1 spawn</span>
+<span class="cmd">/cw set desert spawn2</span>        <span class="comment"># Stand at player 2 spawn</span>
+<span class="cmd">/cw set desert cake1</span>         <span class="comment"># Stand on cake block 1</span>
+<span class="cmd">/cw set desert cake2</span>         <span class="comment"># Stand on cake block 2</span>
+<span class="cmd">/cw set desert gen1</span>          <span class="comment"># Iron generator island 1</span>
+<span class="cmd">/cw set desert gen2</span>          <span class="comment"># Iron generator island 2</span>
+<span class="cmd">/cw set desert diamond</span>       <span class="comment"># Diamond generator (repeat for each)</span>
+<span class="cmd">/cw set desert lobby</span>         <span class="comment"># Arena waiting lobby point</span>
+<span class="cmd">/cw settemplate desert desert</span>
+<span class="cmd">/cw setname desert §6§lDesert Arena</span>
+<span class="cmd">/cw enable desert</span>
+<span class="cmd">/cw save</span></code></pre>
+
+<div class="callout callout-tip">
+  <strong>Tip:</strong> You can repeat the <code>/cw set &lt;arena&gt; diamond</code> command at different locations to create multiple diamond generators.
+</div>
+
+<!-- ============ CREATING TEMPLATE ============ -->
+<h2 id="creating-template">Creating a Map Template</h2>
+
+<p>A template is a complete Minecraft world folder stored in <code>cw_templates/</code> at your server root. Each game clones this template into a temporary world, ensuring the original is never modified.</p>
+
+<h3>Method 1: Manual Copy</h3>
+<pre><code><span class="comment"># Build your map in a dedicated world, then:</span>
+server/
+├── cw_templates/
+│   └── desert/          <span class="comment">← full world folder</span>
+│       ├── region/
+│       ├── level.dat
+│       └── ...</code></pre>
+
+<h3>Method 2: In-Game Command</h3>
+<p>Stand in the world containing your map and run:</p>
+<pre><code><span class="cmd">/cw savetemplate desert</span></code></pre>
+<p>This copies the current world to <code>cw_templates/desert/</code>.</p>
+
+<div class="callout callout-warn">
+  <strong>Important:</strong> The template world should contain your complete CakeWars map including shop NPCs (if using entity-based NPCs). All entities within the world are cloned alongside the terrain.
+</div>
+
+<!-- ============ ARENA CONFIGURATION ============ -->
+<h2 id="arena-config">Arena Configuration</h2>
+
+<p>Each arena requires the following points to be set. Stand at the desired location and execute the command.</p>
+
+<table>
+  <tr><th>Point</th><th>Command</th><th>Required</th><th>Description</th></tr>
+  <tr><td><code>spawn1</code></td><td><code>/cw set &lt;arena&gt; spawn1</code></td><td><span class="badge badge-red">Required</span></td><td>Player 1 spawn location</td></tr>
+  <tr><td><code>spawn2</code></td><td><code>/cw set &lt;arena&gt; spawn2</code></td><td><span class="badge badge-red">Required</span></td><td>Player 2 spawn location</td></tr>
+  <tr><td><code>cake1</code></td><td><code>/cw set &lt;arena&gt; cake1</code></td><td><span class="badge badge-red">Required</span></td><td>Cake block location for player 1</td></tr>
+  <tr><td><code>cake2</code></td><td><code>/cw set &lt;arena&gt; cake2</code></td><td><span class="badge badge-red">Required</span></td><td>Cake block location for player 2</td></tr>
+  <tr><td><code>gen1</code></td><td><code>/cw set &lt;arena&gt; gen1</code></td><td><span class="badge badge-red">Required</span></td><td>Iron generator for player 1's island</td></tr>
+  <tr><td><code>gen2</code></td><td><code>/cw set &lt;arena&gt; gen2</code></td><td><span class="badge badge-red">Required</span></td><td>Iron generator for player 2's island</td></tr>
+  <tr><td><code>lobby</code></td><td><code>/cw set &lt;arena&gt; lobby</code></td><td><span class="badge badge-red">Required</span></td><td>In-arena waiting/spectator spawn</td></tr>
+  <tr><td><code>diamond</code></td><td><code>/cw set &lt;arena&gt; diamond</code></td><td><span class="badge badge-yellow">Optional</span></td><td>Diamond generator (stackable, run multiple times)</td></tr>
+  <tr><td><code>shopitems1/2</code></td><td><code>/cw set &lt;arena&gt; shopitems1</code></td><td><span class="badge badge-blue">Optional</span></td><td>Reserved for future use</td></tr>
+  <tr><td><code>shopblocks1/2</code></td><td><code>/cw set &lt;arena&gt; shopblocks1</code></td><td><span class="badge badge-blue">Optional</span></td><td>Reserved for future use</td></tr>
+</table>
+
+<h3>Additional Arena Settings</h3>
+<pre><code><span class="cmd">/cw setname &lt;arena&gt; &lt;display name&gt;</span>    <span class="comment"># Supports color codes with §</span>
+<span class="cmd">/cw seticon &lt;arena&gt; &lt;MATERIAL&gt;</span>       <span class="comment"># Icon shown in GUI (e.g., SAND, SNOW_BLOCK)</span>
+<span class="cmd">/cw settemplate &lt;arena&gt; &lt;template&gt;</span>   <span class="comment"># Link to a cw_templates/ folder</span>
+<span class="cmd">/cw set &lt;arena&gt; diamond clear</span>       <span class="comment"># Remove all diamond generators</span></code></pre>
+
+<!-- ============ SHOP NPCS ============ -->
+<h2 id="shop-npcs">Shop NPCs</h2>
+
+<p>The plugin does <strong>not</strong> spawn shop NPCs itself. Instead, it detects interactions with existing entities based on configurable name keywords. This makes it compatible with any NPC plugin or even vanilla renamed mobs.</p>
+
+<h3>How It Works</h3>
+<ol style="padding-left: 20px; margin: 12px 0;">
+  <li>Place NPCs in your template world using any method (Citizens, FancyNpcs, name tags, etc.)</li>
+  <li>Give them names containing configured keywords</li>
+  <li>When a player right-clicks the NPC in a game, the corresponding shop opens</li>
+</ol>
+
+<h3>Default Keywords</h3>
+<table>
+  <tr><th>Shop</th><th>Triggers when name contains</th></tr>
+  <tr><td>Items Shop</td><td><code>Items</code>, <code>Item</code>, <code>Combat</code>, <code>Armes</code></td></tr>
+  <tr><td>Blocks Shop</td><td><code>Blocks</code>, <code>Blocs</code>, <code>Build</code>, <code>Construction</code></td></tr>
+</table>
+
+<div class="callout callout-info">
+  <strong>Keyword matching is case-insensitive and substring-based.</strong> A villager named "§e§lItems Shop" will trigger the items shop because it contains "Items". Color codes are stripped before matching.
+</div>
+
+<!-- ============ GENERATORS ============ -->
+<h2 id="generators">Resource Generators</h2>
+
+<p>Generators automatically drop resource items at configured locations during a game.</p>
+
+<table>
+  <tr><th>Type</th><th>Resource</th><th>Default Interval</th><th>Max on Ground</th></tr>
+  <tr><td>Iron (per island)</td><td>Iron Ingot</td><td>2 seconds (40 ticks)</td><td>32</td></tr>
+  <tr><td>Diamond (shared)</td><td>Diamond</td><td>30 seconds (600 ticks)</td><td>4</td></tr>
+</table>
+
+<p>Generators have a ground item cap — they stop spawning when the configured maximum is reached within a 3-block radius. This prevents item accumulation and lag.</p>
+
+<!-- ============ GAME FLOW ============ -->
+<h2 id="game-flow">Game Flow</h2>
+
+<div class="card">
+<pre style="background: none; border: none; padding: 0; margin: 0;"><code>Player opens /cw → GUI Menu
+         │
+    ┌────┴────┐
+    ▼         ▼
+ [Play]   [Private]
+    │         │
+    ▼         ▼
+Queue (random  Create session
+  or specific    with code
+  map)            │
+    │         ┌───┘
+    ▼         ▼
+ 2 players matched
+         │
+         ▼
+ Clone template world → cw_game_&lt;uuid&gt;
+         │
+         ▼
+ Teleport players → Freeze 5s countdown
+         │
+         ▼
+ GO! Generators start, shops active
+         │
+    ┌────┴────┐
+    ▼         ▼
+ Eat cake   PvP kills
+ (7 bites,  (respawn if
+  1s cooldown) cake alive)
+    │
+    ▼
+ Cake destroyed → next death = elimination
+         │
+         ▼
+ Winner declared → Rewards executed
+         │
+         ▼
+ Teleport to main lobby → Delete temp world</code></pre>
+</div>
+
+<h3>Death System</h3>
+<p>TrajCakeWars uses a <strong>fake death system</strong>. Players never see the vanilla death screen. When a player takes fatal damage:</p>
+<ul style="padding-left: 20px; margin: 10px 0;">
+  <li>The damage is cancelled and health is reset</li>
+  <li>The player is set to Spectator mode at the arena lobby</li>
+  <li>A countdown title appears on screen (configurable duration)</li>
+  <li>After countdown, the player respawns at their island with a starter kit</li>
+  <li>If their cake has been destroyed, they are permanently eliminated</li>
+</ul>
+
+<h3>Freeze Phase</h3>
+<p>During the 5-second countdown before a game starts, players are frozen in place. They can look around but cannot move, break blocks, or take damage. Movement is enforced via repeated teleportation.</p>
+
+<h3>TNT &amp; Explosions</h3>
+<p>Explosions (TNT, fireballs) only destroy blocks placed by players during the game. The original map terrain is always protected and never modified.</p>
+
+<!-- ============ MATCHMAKING ============ -->
+<h2 id="matchmaking">Matchmaking</h2>
+
+<p>The matchmaking system supports three queue types that work together:</p>
+
+<table>
+  <tr><th>Queue Type</th><th>How to Join</th><th>Behavior</th></tr>
+  <tr><td><span class="badge badge-green">Public (Random)</span></td><td>GUI → Play, or <code>/cw join</code></td><td>Matches with any player, picks any available arena</td></tr>
+  <tr><td><span class="badge badge-blue">Map-Specific</span></td><td>GUI → Choose Map → Click arena</td><td>Only matches with players queued for the same map</td></tr>
+  <tr><td><span class="badge badge-yellow">Private</span></td><td>GUI → Private, or <code>/cw private &lt;arena&gt;</code></td><td>Creates a session with a 6-char code</td></tr>
+</table>
+
+<p>The matchmaker runs every second and also attempts <strong>cross-queue matching</strong>: a random-queue player can be matched with a map-specific player if the requested map is available.</p>
+
+<!-- ============ PRIVATE SESSIONS ============ -->
+<h2 id="private-sessions">Private Sessions</h2>
+
+<p>Private sessions allow players to create invite-only matches:</p>
+
+<pre><code><span class="comment"># Host creates a session</span>
+<span class="cmd">/cw private desert</span>
+<span class="comment"># → "Session created! Code: K4HN7P"</span>
+
+<span class="comment"># Friend joins with the code</span>
+<span class="cmd">/cw join K4HN7P</span>
+<span class="comment"># → Game starts immediately</span></code></pre>
+
+<p>Sessions can also be browsed through the GUI. Open sessions are listed with host name, map, and a join button.</p>
+
+<!-- ============ CAKE MECHANIC ============ -->
+<h2 id="cake-mechanic">Cake Mechanic</h2>
+
+<p>The cake is the core objective. Each player has a cake block on their island.</p>
+
+<table>
+  <tr><th>Property</th><th>Value</th></tr>
+  <tr><td>Total bites to destroy</td><td>7 (vanilla cake behavior)</td></tr>
+  <tr><td>Cooldown between bites</td><td>1 second</td></tr>
+  <tr><td>Interaction</td><td>Right-click only (left-click is blocked)</td></tr>
+  <tr><td>Self-eat protection</td><td>Players cannot eat their own cake</td></tr>
+</table>
+
+<p>When a cake is fully eaten, the owning player can no longer respawn. Their next death results in permanent elimination and the opponent wins.</p>
+
+<div class="callout callout-info">
+  <strong>Why right-click?</strong> The cake must be eaten (right-click), not broken (left-click). This is intentional — it adds a risk/reward dynamic where the attacker must stand still and eat, leaving them vulnerable.
+</div>
+
+<!-- ============ SHOPS ============ -->
+<h2 id="shops">Shops</h2>
+
+<p>Shops are fully driven by <code>config.yml</code>. There are two default shops: <strong>Items Shop</strong> and <strong>Blocks Shop</strong>. Every item can be customized.</p>
+
+<h3>Item Types</h3>
+<table>
+  <tr><th>Type</th><th>Behavior</th></tr>
+  <tr><td><code>sword</code></td><td>Auto-replaces any lower-tier sword in the player's inventory. Always placed in slot 0 (main hand).</td></tr>
+  <tr><td><code>armor-set</code></td><td>Auto-equips chestplate + leggings. Replaces lower-tier armor. Requires <code>chest</code> and <code>legs</code> fields.</td></tr>
+  <tr><td><code>armor-piece</code></td><td>Auto-equips a single armor piece. Replaces lower-tier in the same slot.</td></tr>
+  <tr><td><code>normal</code></td><td>Adds the item to inventory. Supports <code>amount</code> field for stacks.</td></tr>
+</table>
+
+<h3>Armor Tier Hierarchy</h3>
+<p><code>Leather (0) → Chainmail (1) → Iron (2) → Diamond (3)</code></p>
+<p>A player can only equip armor of equal or higher tier. Purchasing a higher tier automatically replaces the lower one.</p>
+
+<!-- ============ CONFIGURATION ============ -->
+<h2 id="config-general">Configuration — General</h2>
+<pre><code><span class="key">settings</span>:
+  <span class="key">prefix</span>: <span class="string">"&d&lCakeWars &r&7» &r"</span>   <span class="comment"># Chat message prefix</span>
+  <span class="key">lobby-world</span>: <span class="string">"world"</span>               <span class="comment"># Main lobby world name</span>
+
+<span class="key">game</span>:
+  <span class="key">countdown</span>: 5            <span class="comment"># Pre-game freeze duration (seconds)</span>
+  <span class="key">respawn-time</span>: 5         <span class="comment"># Respawn countdown when cake is alive</span>
+  <span class="key">max-duration</span>: 600       <span class="comment"># Max game length in seconds (0 = infinite)</span></code></pre>
+
+<h2 id="config-generators">Configuration — Generators</h2>
+<pre><code><span class="key">generators</span>:
+  <span class="key">iron</span>:
+    <span class="key">interval</span>: 40     <span class="comment"># Ticks between spawns (20 ticks = 1 second)</span>
+    <span class="key">max</span>: 32          <span class="comment"># Max items on ground per generator</span>
+  <span class="key">diamond</span>:
+    <span class="key">interval</span>: 600
+    <span class="key">max</span>: 4</code></pre>
+
+<h2 id="config-rewards">Configuration — Rewards</h2>
+<pre><code><span class="key">rewards</span>:
+  <span class="key">enabled</span>: true
+  <span class="key">winner</span>:
+    <span class="key">commands</span>:
+      - <span class="string">"give %winner% diamond 5"</span>
+      - <span class="string">"eco give %winner% 100"</span>       <span class="comment"># Works with Vault/Essentials</span>
+      - <span class="string">"broadcast &6%winner% &7won CakeWars against &c%loser%&7!"</span>
+    <span class="key">message</span>: <span class="string">"&6⭐ VICTORY! &a+5 Diamonds +100 coins"</span>
+  <span class="key">loser</span>:
+    <span class="key">commands</span>: []
+    <span class="key">message</span>: <span class="string">"&cDefeat. Try again!"</span></code></pre>
+
+<h3>Available Placeholders</h3>
+<table>
+  <tr><th>Placeholder</th><th>Description</th></tr>
+  <tr><td><code>%winner%</code></td><td>Username of the winning player</td></tr>
+  <tr><td><code>%loser%</code></td><td>Username of the losing player</td></tr>
+  <tr><td><code>%arena%</code></td><td>Display name of the arena</td></tr>
+</table>
+
+<h2 id="config-shops">Configuration — Shop Items</h2>
+<p>Both shops are fully defined in <code>config.yml</code>. Here is the structure for a single item:</p>
+<pre><code><span class="key">items-shop</span>:
+  <span class="key">title</span>: <span class="string">"&d&lItems Shop"</span>
+  <span class="key">size</span>: 45                     <span class="comment"># Inventory size: 9, 18, 27, 36, 45, 54</span>
+  <span class="key">items</span>:
+    <span class="key">my-custom-item</span>:            <span class="comment"># Unique key (any name)</span>
+      <span class="key">slot</span>: 10                  <span class="comment"># Inventory slot position</span>
+      <span class="key">type</span>: <span class="string">normal</span>              <span class="comment"># sword | armor-set | armor-piece | normal</span>
+      <span class="key">material</span>: <span class="string">GOLDEN_APPLE</span>    <span class="comment"># Bukkit Material name</span>
+      <span class="key">name</span>: <span class="string">"&6Golden Apple"</span>     <span class="comment"># Display name (supports color codes)</span>
+      <span class="key">amount</span>: 1                 <span class="comment"># How many given per purchase</span>
+      <span class="key">price</span>: 2                  <span class="comment"># Cost</span>
+      <span class="key">currency</span>: <span class="string">DIAMOND</span>         <span class="comment"># IRON_INGOT or DIAMOND</span>
+      <span class="key">lore</span>:                     <span class="comment"># Optional description lines</span>
+        - <span class="string">"&7Heals 2 hearts"</span>
+        - <span class="string">"&7Gives absorption"</span></code></pre>
+
+<p>For <code>armor-set</code> type, use <code>chest</code> and <code>legs</code> instead of <code>material</code>:</p>
+<pre><code>    <span class="key">iron-set</span>:
+      <span class="key">slot</span>: 15
+      <span class="key">type</span>: <span class="string">armor-set</span>
+      <span class="key">chest</span>: <span class="string">IRON_CHESTPLATE</span>
+      <span class="key">legs</span>: <span class="string">IRON_LEGGINGS</span>
+      <span class="key">name</span>: <span class="string">"&fIron Set"</span>
+      <span class="key">price</span>: 6
+      <span class="key">currency</span>: <span class="string">DIAMOND</span></code></pre>
+
+<h2 id="config-detection">Configuration — NPC Detection</h2>
+<pre><code><span class="key">shop-detection</span>:
+  <span class="key">items-keywords</span>:      <span class="comment"># Entity names containing these open the Items Shop</span>
+    - <span class="string">"Items"</span>
+    - <span class="string">"Item"</span>
+    - <span class="string">"Combat"</span>
+    - <span class="string">"Weapons"</span>
+  <span class="key">blocks-keywords</span>:     <span class="comment"># Entity names containing these open the Blocks Shop</span>
+    - <span class="string">"Blocks"</span>
+    - <span class="string">"Build"</span>
+    - <span class="string">"Construction"</span></code></pre>
+<p>Matching is <strong>case-insensitive</strong> and <strong>substring-based</strong>. Color codes are stripped before comparison. Works with any living entity (Villagers, Players, Zombies — whatever your NPC plugin creates).</p>
+
+<!-- ============ COMMANDS ============ -->
+<h2 id="player-commands">Player Commands</h2>
+<table>
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td><code>/cw</code></td><td>Opens the main menu GUI</td></tr>
+  <tr><td><code>/cw join</code></td><td>Joins the public matchmaking queue</td></tr>
+  <tr><td><code>/cw join &lt;code&gt;</code></td><td>Joins a private session by invite code</td></tr>
+  <tr><td><code>/cw leave</code></td><td>Leaves the current queue, session, or game</td></tr>
+  <tr><td><code>/cw queue</code></td><td>Shows current queue size</td></tr>
+  <tr><td><code>/cw private &lt;arena&gt;</code></td><td>Creates a private session on a specific arena</td></tr>
+</table>
+
+<h2 id="admin-commands">Admin Commands</h2>
+<p>All admin commands require the <code>cakewars.admin</code> permission.</p>
+<table>
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td><code>/cw admin</code></td><td>Opens the admin GUI panel</td></tr>
+  <tr><td><code>/cw create &lt;id&gt;</code></td><td>Creates a new arena</td></tr>
+  <tr><td><code>/cw set &lt;arena&gt; &lt;point&gt;</code></td><td>Sets a configuration point at your location</td></tr>
+  <tr><td><code>/cw setname &lt;arena&gt; &lt;name&gt;</code></td><td>Sets the display name (supports color codes)</td></tr>
+  <tr><td><code>/cw seticon &lt;arena&gt; &lt;material&gt;</code></td><td>Sets the GUI icon material</td></tr>
+  <tr><td><code>/cw settemplate &lt;arena&gt; &lt;name&gt;</code></td><td>Links the arena to a template in <code>cw_templates/</code></td></tr>
+  <tr><td><code>/cw savetemplate &lt;name&gt;</code></td><td>Saves the current world as a template</td></tr>
+  <tr><td><code>/cw enable &lt;arena&gt;</code></td><td>Activates the arena for matchmaking</td></tr>
+  <tr><td><code>/cw save</code></td><td>Saves all arena configurations to disk</td></tr>
+  <tr><td><code>/cw list</code></td><td>Lists all arenas with their status</td></tr>
+  <tr><td><code>/cw info &lt;arena&gt;</code></td><td>Opens the arena detail GUI</td></tr>
+</table>
+
+<!-- ============ PERMISSIONS ============ -->
+<h2 id="permissions">Permissions</h2>
+<table>
+  <tr><th>Permission</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>cakewars.play</code></td><td>true</td><td>Allows using /cw, joining queues, and playing games</td></tr>
+  <tr><td><code>cakewars.admin</code></td><td>op</td><td>Allows arena creation, configuration, and admin GUI access</td></tr>
+</table>
+
+<!-- ============ COMPATIBILITY ============ -->
+<h2 id="compatibility">Compatibility</h2>
+
+<h3>Tested NPC Plugins</h3>
+<div class="card-grid">
+  <div class="feature-card"><h4>Citizens2</h4><p>Full support. Use <code>/npc command add -p cw</code> for lobby NPC.</p></div>
+  <div class="feature-card"><h4>FancyNpcs</h4><p>Full support. Name NPCs with shop keywords.</p></div>
+  <div class="feature-card"><h4>ZNPCsPlus</h4><p>Full support. Configure click actions to run /cw.</p></div>
+  <div class="feature-card"><h4>Vanilla Villagers</h4><p>Rename with a name tag. Works out of the box.</p></div>
+</div>
+
+<h3>Recommended Companion Plugins</h3>
+<table>
+  <tr><th>Plugin</th><th>Purpose</th></tr>
+  <tr><td>TAB</td><td>Per-world player list — isolates game tab from lobby</td></tr>
+  <tr><td>LuckPerms</td><td>Permission management</td></tr>
+  <tr><td>Vault + EssentialsX</td><td>Economy integration for reward commands</td></tr>
+  <tr><td>PlaceholderAPI</td><td>Future: expose CakeWars stats as placeholders</td></tr>
+</table>
+
+<!-- ============ ARCHITECTURE ============ -->
+<h2 id="architecture">Technical Architecture</h2>
+
+<h3>World Lifecycle</h3>
+<pre><code>cw_templates/desert/     <span class="comment">← immutable template (never modified)</span>
+         │
+         │  cp -r (file copy)
+         ▼
+cw_game_a8f3c2d1/        <span class="comment">← temporary clone (auto-generated name)</span>
+         │
+         │  WorldCreator.createWorld()
+         ▼
+Loaded Bukkit World       <span class="comment">← game runs here</span>
+         │
+         │  Game ends
+         ▼
+Bukkit.unloadWorld()      <span class="comment">← world unloaded from memory</span>
+         │
+         │  Recursive file delete
+         ▼
+(deleted)                 <span class="comment">← no trace left</span></code></pre>
+
+<h3>Game World Settings</h3>
+<p>Each temporary game world is created with these gamerules:</p>
+<pre><code>autoSave: false
+doMobSpawning: false
+doDaylightCycle: false
+doWeatherCycle: false
+announceAdvancements: false
+doFireTick: false
+time: 6000 (noon)</code></pre>
+
+<h3>Plugin Structure</h3>
+<pre><code>fr.trajstudio.cakewars/
+├── CakeWarsPlugin.java          <span class="comment"># Entry point</span>
+├── arena/
+│   ├── Arena.java               <span class="comment"># Arena data model</span>
+│   ├── ArenaManager.java        <span class="comment"># CRUD + game lifecycle</span>
+│   └── ArenaState.java          <span class="comment"># State enum</span>
+├── commands/
+│   └── CakeWarsCommand.java     <span class="comment"># Commands + tab completion</span>
+├── game/
+│   └── GameInstance.java        <span class="comment"># Single match controller</span>
+├── gui/
+│   ├── MainMenuGUI.java         <span class="comment"># /cw main menu</span>
+│   ├── MapSelectGUI.java        <span class="comment"># Map browser + sessions</span>
+│   ├── AdminGUI.java            <span class="comment"># Admin panel</span>
+│   └── GUIListener.java         <span class="comment"># Click handler for all GUIs</span>
+├── listeners/
+│   ├── GameListener.java        <span class="comment"># PvP, death, explosions, blocks</span>
+│   ├── PlayerConnectionListener.java
+│   └── ShopListener.java        <span class="comment"># NPC detection + shop clicks</span>
+├── matchmaking/
+│   └── MatchmakingManager.java  <span class="comment"># Queues + private sessions</span>
+├── shop/
+│   └── ShopGUI.java             <span class="comment"># Config-driven shop builder</span>
+└── utils/
+    ├── AutoEquip.java           <span class="comment"># Sword/armor auto-replacement</span>
+    └── WorldManager.java        <span class="comment"># World clone/load/delete</span></code></pre>
+
+<!-- ============ FAQ ============ -->
+<h2 id="faq">FAQ</h2>
+
+<h3>Can I add more than 2 shops?</h3>
+<p>Currently the plugin supports two shops: Items and Blocks, each triggered by configurable keywords. Adding more shop categories requires code modification. However, you can fit up to 54 items per shop, which is usually sufficient.</p>
+
+<h3>How many concurrent games can run?</h3>
+<p>Limited only by server RAM and disk speed. Each game world is typically 5-50MB depending on map size. With 4GB RAM, expect 10-20 concurrent games comfortably.</p>
+
+<h3>Does TNT damage the map?</h3>
+<p>No. Explosions only destroy blocks placed by players during the game. The original template terrain is always protected.</p>
+
+<h3>What happens if the server crashes during a game?</h3>
+<p>Temporary game worlds (<code>cw_game_*</code>) will remain on disk. They are harmless but take up space. You can safely delete any <code>cw_game_*</code> folders when the server is stopped.</p>
+
+<h3>Can I use this for 2v2 or 4v4?</h3>
+<p>The current version is designed for 1v1. Team support would require code modifications to the matchmaking and game instance systems.</p>
+
+<h3>How do I update the plugin?</h3>
+<p>Replace the JAR file and restart the server. Your <code>config.yml</code> and <code>arenas.yml</code> are preserved. New config options will use their defaults until you add them manually.</p>
+
+<div style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center;">
+  <p style="color: var(--text-dim); font-size: 13px;">TrajCakeWars v2.1.0 — Built by <strong style="color: var(--accent);">TrajStudio</strong></p>
+</div>
+
+</main>
+</div>
+</body>
+</html>
